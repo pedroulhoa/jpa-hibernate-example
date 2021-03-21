@@ -58,4 +58,29 @@ class UserTest {
         Assertions.assertNotNull(users);
     }
 
+    @Test
+    void updateUser() {
+        em.getTransaction().begin();
+
+        User user = em.find(User.class, 1L);
+        em.detach(user);
+
+        user.setNome("Pedro Ulhoa");
+        user.setEmail("pedroulhoa@mailteste.com");
+
+        em.merge(user);
+        em.getTransaction().commit();
+    }
+
+    @Test
+    void removeUser() {
+        User user = em.find(User.class, 8L);
+
+        if (user != null) {
+            em.getTransaction().begin();
+            em.remove(user);
+            em.getTransaction().commit();
+        }
+    }
+
 }
