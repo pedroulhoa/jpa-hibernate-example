@@ -9,8 +9,8 @@ import java.util.List;
 public class DAO<E> {
 
     private static EntityManagerFactory emf;
-    private EntityManager em;
-    private Class<E> sentClass;
+    private final EntityManager em;
+    private final Class<E> sentClass;
 
     static {
         try {
@@ -39,13 +39,17 @@ public class DAO<E> {
         return this;
     }
 
+    public void closeEntityManager() {
+        em.close();
+    }
+
     public DAO<E> insert(E entity) {
         em.persist(entity);
         return this;
     }
 
-    public void closeEntityManager() {
-        em.close();
+    public E getByID(Long id) {
+        return em.find(sentClass, id);
     }
 
     public DAO<E> insertAtomic(E entity) {
