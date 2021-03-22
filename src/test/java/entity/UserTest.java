@@ -36,7 +36,7 @@ class UserTest {
         em.getTransaction().commit();
 
         System.out.println(user.getId());
-        Assertions.assertNotNull(user);
+        Assertions.assertNotNull(user.getId());
     }
 
     @Test
