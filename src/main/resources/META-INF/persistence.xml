@@ -8,6 +8,8 @@
         <class>entity.User</class>
         <class>entity.Product</class>
         <class>entity.Seat</class>
+        <class>entity.Order</class>
+        <class>entity.OrderItem</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
