@@ -24,6 +24,7 @@ class OrderTest {
         });
 
         assertNotNull(order);
+        dao.closeEntityManager();
     }
 
 }

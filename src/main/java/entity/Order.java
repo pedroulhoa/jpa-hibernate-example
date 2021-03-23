@@ -12,7 +12,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY) // (...ToMany ->  default LAZY)
     private List<OrderItem> items;
 
     @Column(nullable = false)
