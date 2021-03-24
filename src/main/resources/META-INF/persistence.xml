@@ -10,6 +10,8 @@
         <class>entity.Seat</class>
         <class>entity.Order</class>
         <class>entity.OrderItem</class>
+        <class>entity.Actor</class>
+        <class>entity.Movie</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
