@@ -1,6 +1,7 @@
 package persistence;
 
 import entity.Movie;
+import entity.nativeQuery.MovieRateAvg;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -32,5 +33,21 @@ public class MovieDAO extends DAO<Movie> {
         }
 
         return Optional.ofNullable(movies);
+    }
+
+    public Optional<MovieRateAvg> getMoviesRateAvg() {
+        EntityManager em = PersistenceUtil.getEntityManager();
+        MovieRateAvg movieRateAvg = null;
+
+        try {
+            TypedQuery<MovieRateAvg> query = em.createNamedQuery("getMovieRateAvg", MovieRateAvg.class);
+            if (!query.getResultList().isEmpty()) movieRateAvg = query.getResultList().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+
+        return Optional.ofNullable(movieRateAvg);
     }
 }

@@ -1,11 +1,23 @@
 package entity;
 
+import entity.nativeQuery.MovieRateAvg;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "tb_movie")
+@SqlResultSetMapping(
+        name = "getMovieRateAvgMap",
+        classes = @ConstructorResult(
+                targetClass = MovieRateAvg.class,
+                columns = {
+                        @ColumnResult(name = "average", type = Double.class)
+                }
+        )
+)
+@NamedNativeQuery(name = "getMovieRateAvg", query = "select avg(rate) as average from tb_movie", resultSetMapping = "getMovieRateAvgMap")
 public class Movie {
 
     @Id
@@ -82,3 +94,4 @@ public class Movie {
         }
     }
 }
+

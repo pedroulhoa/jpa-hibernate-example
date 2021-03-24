@@ -1,5 +1,6 @@
 package entity;
 
+import entity.nativeQuery.MovieRateAvg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistence.MovieDAO;
@@ -42,6 +43,13 @@ class MovieTest {
         movies.forEach(movie -> System.out.println(movie.getName()));
 
         assert !movies.isEmpty();
+    }
+
+    @Test
+    void getMoviesRateAvgTest() {
+        MovieRateAvg movieRateAvg = dao.getMoviesRateAvg().orElse(null);
+        System.out.println(movieRateAvg.getRate());
+        assertNotNull(movieRateAvg);
     }
 
 
