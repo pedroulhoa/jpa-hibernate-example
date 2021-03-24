@@ -2,17 +2,20 @@ package entity;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import persistence.DAO;
+import persistence.MovieDAO;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MovieTest {
 
-    DAO<Movie> dao;
+    MovieDAO dao;
 
     @BeforeEach
     void dao() {
-        dao = new DAO<>();
+        dao = new MovieDAO();
     }
 
     @Test
@@ -31,5 +34,15 @@ class MovieTest {
         dao.insertAtomic(movieA).closeEntityManager();
         assertNotNull(movieA);
     }
+
+    @Test
+    void getMoviesByHigherRateTest() {
+        Double rate = 5.0;
+        List<Movie> movies = dao.getMoviesByHigherRate(rate).orElse(Arrays.asList());
+        movies.forEach(movie -> System.out.println(movie.getName()));
+
+        assert !movies.isEmpty();
+    }
+
 
 }
